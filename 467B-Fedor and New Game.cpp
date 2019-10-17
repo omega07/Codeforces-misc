@@ -101,21 +101,55 @@ int fpow(int a,int n)
 int32_t main() {
 
 	fast;
-    int n,m;
-    cin>>n>>m;
+    int n,m,k;
+    cin>>n>>m>>k;
 
-    int a[m];
+    string a[m] = {""};
+    string f = "";
+
+
+    int b;
 
     for(int i=0;i<m;i++)
-        cin>>a[i];
-
-    int ans = a[0]-1;
-    for(int i=1;i<m;i++)
     {
-        if(a[i]<a[i-1])
-            ans += (n-(a[i-1]-a[i]));
-        else
-            ans += (a[i]-a[i-1]);
+        cin>>b;
+        while(b)
+        {
+            a[i] += (char)(b%2 + '0');
+            b /= 2;
+        }
+        while(a[i].length() < n)
+            a[i] += '0';
+
+        reverse(a[i].begin(),a[i].end());
+    }
+
+    cin>>b;
+
+    while(b)
+    {
+        f += (char)(b%2 + '0');
+        b /= 2;
+    }
+    while(f.length() < n)
+        f += '0';
+
+    reverse(f.begin(),f.end());
+    int ans = 0;
+    int cnt = 0;
+    for(int i=0;i<m;i++)
+    {
+        cnt = 0;
+        for(int j=0;j<n;j++)
+        {
+            if(a[i][j] != f[j])
+                cnt++;
+        }
+        if(cnt <= k)
+        {
+            ans++;
+
+        }
     }
     cout<<ans;
 
