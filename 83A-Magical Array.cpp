@@ -1,7 +1,3 @@
-/*
-Life would be so simple if brute worked everytime...
-
-*/
 #include <bits/stdc++.h>
 #define int long long
 #define itn int
@@ -56,7 +52,6 @@ int palindrome (int n)
     return 1;
 }
 */
-
 int nCr(int n,int r)
 {
     int ans = 1;
@@ -101,57 +96,32 @@ int fpow(int a,int n)
 int32_t main() {
 
 	fast;
-    int n,m,k;
-    cin>>n>>m>>k;
+    itn n;
+    cin>>n;
 
-    string a[m] = {""};
-    string f = "";
+    int a[n];
+    for(int i=0;i<n;i++)
+        cin>>a[i];
+    int b[n];
 
-
-    int b;
-
-    for(int i=0;i<m;i++)
+    b[0] = 1;
+    for(itn i=1;i<n;i++)
     {
-        cin>>b;
-        while(b)
-        {
-            a[i] += (char)(b%2 + '0');
-            b /= 2;
-        }
-        while(a[i].length() < n)
-            a[i] += '0';
-
-        reverse(a[i].begin(),a[i].end());
+        if(a[i] == a[i-1])
+            b[i] = b[i-1]+1;
+        else
+            b[i] = 1;
     }
 
-    cin>>b;
-
-    while(b)
+    int ans  = n;
+    for(int i=1;i<n;i++)
     {
-        f += (char)(b%2 + '0');
-        b /= 2;
+        if(b[i] == 1)
+            ans += ((b[i-1])*(b[i-1]-1))/2;
     }
-    while(f.length() < n)
-        f += '0';
+    ans += (b[n-1]*(b[n-1]-1))/2;
+	cout<<ans;
 
-    reverse(f.begin(),f.end());
-    int ans = 0;
-    int cnt = 0;
-    for(int i=0;i<m;i++)
-    {
-        cnt = 0;
-        for(int j=0;j<n;j++)
-        {
-            if(a[i][j] != f[j])
-                cnt++;
-        }
-        if(cnt <= k)
-        {
-            ans++;
 
-        }
-    }
-    cout<<ans;
-
-    return 0;
+	return 0;
 }
