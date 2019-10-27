@@ -1,2 +1,2 @@
 # Codeforces-misc
-Contains miscellaneous problems of Div.2 and Div.3
+Contains miscellaneous problems of Div.1 , Div.2 and Div.3
