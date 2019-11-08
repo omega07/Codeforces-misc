@@ -1,0 +1,114 @@
+/*
+LIFE WOULD BE SO BEAUTIFUL IF BRUTE WORKED EVERYTIME
+*/
+#include <bits/stdc++.h>
+#include <string.h>
+#define int long long
+#define MAX 1000
+#define itn int
+#define inf 1e9
+#define mod 1000000007
+#define pb push_back
+#define all(x) x.begin(),x.end()
+#define sitr set<int> :: iterator
+#define mitr map<int,int> :: iterator
+#define pii pair<int,int>
+#define vii vector<pii>
+#define vi vector<int>
+#define sortall(x) sort(x.begin(),x.end());
+#define fast ios_base :: sync_with_stdio(0);cin.tie(NULL);cout.tie(NULL)
+using namespace std;
+/*
+int a[1000007];
+vi v;
+void seive()
+{
+    for(int i=0;i<=1000000;i++)
+    a[i] = 1;
+
+    a[0]=a[1]=0;
+    for(int i=2;i<=1000;i++)
+    {
+        if(a[i] == 1)
+        {
+            v.pb(i);
+            for(int j=2*i;j<=1000000;j+=i)
+            a[j] = 0;
+        }
+    }
+
+    for(int i=321;i<=1000000;i++)
+    {
+        if(a[i] == 1)
+        v.pb(i);
+    }
+}
+*/
+//int palindrome (int n){int x;string s = tostring(n); if(!(s.length()%2)) x = s.length()/2 - 1; else x = s.length()/2; for(int i=0;i<=x;i++) {if(s[i] != s[s.length()-1-i]) return 0; } return 1; }
+//int nCr(int n,int r){if(r>n) return 0;  int k = r; if((n-r)<r) k = (n-r); int g = k; int ans = 1; for(int i=n;i>=n-k+1;i--) { ans *= i; if(ans%g == 0){ans /= g; g--;}} while(g>=1) { ans /= g; g--;} return ans;}
+//int fpow(int a,int n){if(n == 1) return a; if(n%2) return (a%mod * fpow(a,n-1)%mod)%mod; return (fpow(a,n/2)%mod * fpow(a,n/2)%mod)%mod;}
+//int toint(const string &s) {stringstream ss; ss << s; int x; ss >> x; return x;}
+//string tostring ( int number ){stringstream ss; ss<< number; return ss.str();}
+//int negativemod(int a,int n){return (a%n)+n;}
+//int palindrome (string s){int x; if(!(s.length()%2)) x = s.length()/2 - 1; else x = s.length()/2; for(int i=0;i<=x;i++) {if(s[i] != s[s.length()-1-i]) return 0; } return 1; }
+
+
+int32_t main(){
+    fast;
+    string s,t;
+    cin>>s>>t;
+    int a[26]={0},b[26]={0};
+    for(int i=0;i<s.length();i++)
+    {
+        a[(int)(s[i]-'a')]++;
+    }
+    for(int i=0;i<t.length();i++)
+    {
+        b[(int)(t[i]-'a')]++;
+    }
+
+
+    if(s.length()<t.length())
+        cout<<"need tree";
+    else
+    if(s.length() == t.length())
+    {
+
+
+        for(int i=0;i<26;i++)
+        {
+            if(a[i] != b[i])
+            {
+                cout<<"need tree";
+                return 0;
+            }
+        }
+        cout<<"array";
+    }
+    else
+    {
+        for(int i=0;i<26;i++)
+        {
+            if(a[i]<b[i])
+            {
+                cout<<"need tree";
+                return 0;
+            }
+
+        }
+
+        int j=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s[i] == t[j])
+                j++;
+        }
+        if(j == t.length())
+            cout<<"automaton";
+        else
+            cout<<"both";
+    }
+
+
+    return 0;
+}
